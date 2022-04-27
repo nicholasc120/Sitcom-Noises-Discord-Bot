@@ -33,7 +33,6 @@ def pickRandomNoise():
 async def on_voice_state_update(member: discord.Member, before, after):
     path = pickRandomNoise()
     if before.channel is None and after.channel is not None:
-        print("user joined the VC")
         channel = member.voice.channel
         vc = await channel.connect()
         vc.play(discord.FFmpegPCMAudio(path))
