@@ -25,7 +25,7 @@ async def on_message(message):
 
 
 def pickRandomNoise():
-    noises = ["Applause.mp3", "norm.mp3", "seinfeld.mp3", "friends.mp3", "troy and abed in the morning.mp3"]
+    noises = ["Applause.mp3", "norm.mp3", "seinfeld.mp3", "friends.mp3", "troy and abed in the morning.mp3", "family guy.mp3"]
     return random.choice(noises)
 
 
