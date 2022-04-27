@@ -40,7 +40,7 @@ async def on_voice_state_update(member: discord.Member, before, after):
             while vc.is_playing():
                 await sleep(1)
             await vc.disconnect()
-        else:
+        elif before.channel is not None and after.channel is None:
             path = "jazz.mp3"
             channel = before.channel
             vc = await channel.connect()
