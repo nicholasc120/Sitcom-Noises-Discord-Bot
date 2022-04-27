@@ -32,12 +32,21 @@ def pickRandomNoise():
 @client.event
 async def on_voice_state_update(member: discord.Member, before, after):
     path = pickRandomNoise()
-    if before.channel is None and after.channel is not None:
-        channel = member.voice.channel
-        vc = await channel.connect()
-        vc.play(discord.FFmpegPCMAudio(path))
-        while vc.is_playing():
-            await sleep(1)
-        await vc.disconnect()
+    if not member.bot:
+        if before.channel is None and after.channel is not None:
+            channel = member.voice.channel
+            vc = await channel.connect()
+            vc.play(discord.FFmpegPCMAudio(path))
+            while vc.is_playing():
+                await sleep(1)
+            await vc.disconnect()
+        else:
+            path = "jazz.mp3"
+            channel = before.channel
+            vc = await channel.connect()
+            vc.play(discord.FFmpegPCMAudio(path))
+            while vc.is_playing():
+                await sleep(1)
+            await vc.disconnect()
 
 client.run(os.getenv('TOKEN'))
