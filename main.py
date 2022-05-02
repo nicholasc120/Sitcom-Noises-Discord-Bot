@@ -7,7 +7,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-client = commands.Bot(command_prefix='&')
+client = commands.Bot(command_prefix='$', activity=discord.Activity(
+    type=discord.ActivityType.watching, name="How I Met Your Mother"))
 
 
 @client.event
@@ -18,7 +19,7 @@ async def on_ready():
 @client.event
 async def on_message(message):
     if message.content.startswith('$hello'):
-        await message.channel.send('Hello!')
+        await message.channel.send('Jefrrey sTeinfeld!')
     if message.content.startswith('$laugh'):
         channel = message.author.voice.channel
         vc = await channel.connect()
@@ -54,11 +55,39 @@ async def on_message(message):
         while vc.is_playing():
             await sleep(1)
         await vc.disconnect()
+    if message.content.startswith('$bazinga'):
+        channel = message.author.voice.channel
+        vc = await channel.connect()
+        vc.play(discord.FFmpegPCMAudio("bazinga.mp3"))
+        while vc.is_playing():
+            await sleep(1)
+        await vc.disconnect()
+    if message.content.startswith('$howyoudoin'):
+        channel = message.author.voice.channel
+        vc = await channel.connect()
+        vc.play(discord.FFmpegPCMAudio("howyoudoin.mp3"))
+        while vc.is_playing():
+            await sleep(1)
+        await vc.disconnect()
+    if message.content.startswith('$challengeaccepted'):
+        channel = message.author.voice.channel
+        vc = await channel.connect()
+        vc.play(discord.FFmpegPCMAudio("challengeaccepted.mp3"))
+        while vc.is_playing():
+            await sleep(1)
+        await vc.disconnect()
+    if message.content.startswith('$dididothat'):
+        channel = message.author.voice.channel
+        vc = await channel.connect()
+        vc.play(discord.FFmpegPCMAudio("dididothat.mp3"))
+        while vc.is_playing():
+            await sleep(1)
+        await vc.disconnect()
 
 
 def pickRandomNoise():
     noises = ["Applause.mp3", "norm.mp3", "seinfeld.mp3", "friends.mp3",
-              "troy and abed in the morning.mp3", "family guy.mp3"]
+              "troy and abed in the morning.mp3", "family guy.mp3", "men.mp3"]
     return random.choice(noises)
 
 
