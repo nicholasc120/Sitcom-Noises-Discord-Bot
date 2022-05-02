@@ -7,8 +7,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-client = commands.Bot(command_prefix='.',
-                      help_command=None)
+client = commands.Bot(command_prefix='&')
 
 
 @client.event
@@ -18,11 +17,43 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    if message.author == client.user:
-        return
-
     if message.content.startswith('$hello'):
         await message.channel.send('Hello!')
+    if message.content.startswith('$laugh'):
+        channel = message.author.voice.channel
+        vc = await channel.connect()
+        vc.play(discord.FFmpegPCMAudio("laugh.mp3"))
+        while vc.is_playing():
+            await sleep(1)
+        await vc.disconnect()
+    if message.content.startswith('$aww'):
+        channel = message.author.voice.channel
+        vc = await channel.connect()
+        vc.play(discord.FFmpegPCMAudio("aww.mp3"))
+        while vc.is_playing():
+            await sleep(1)
+        await vc.disconnect()
+    if message.content.startswith('$gasp'):
+        channel = message.author.voice.channel
+        vc = await channel.connect()
+        vc.play(discord.FFmpegPCMAudio("gasp.mp3"))
+        while vc.is_playing():
+            await sleep(1)
+        await vc.disconnect()
+    if message.content.startswith('$clap'):
+        channel = message.author.voice.channel
+        vc = await channel.connect()
+        vc.play(discord.FFmpegPCMAudio("Applause.mp3"))
+        while vc.is_playing():
+            await sleep(1)
+        await vc.disconnect()
+    if message.content.startswith('$thatswhatshesaid'):
+        channel = message.author.voice.channel
+        vc = await channel.connect()
+        vc.play(discord.FFmpegPCMAudio("thatswhatshesaid.mp3"))
+        while vc.is_playing():
+            await sleep(1)
+        await vc.disconnect()
 
 
 def pickRandomNoise():
@@ -50,5 +81,6 @@ async def on_voice_state_update(member: discord.Member, before, after):
             while vc.is_playing():
                 await sleep(1)
             await vc.disconnect()
+
 
 client.run(os.getenv('TOKEN'))
